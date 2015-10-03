@@ -9,14 +9,7 @@ int getPos(int it, int size)
 {
 	if(it < 0)
 	{
-		if(it%size)
-		{
-			return size + it%size;
-		}
-		else
-		{
-			return 0;
-		}
+		return (it%size)? size + it%size : 0;
 	}
 	else
 	{
@@ -29,38 +22,46 @@ void createQueue(int **mat, int a, int b, int m, int n, int r)
 	int *tmp = new int[2*(m-2*a)+2*(n-2*b)];
 	int it=0;
 
-	for(int i=a; i<m-1-a; ++i){
+	for(int i=a; i<m-1-a; ++i)
+	{
 		tmp[it++]=mat[i][b];
 	}
 
-	for(int j=a; j<n-1-b; ++j){
+	for(int j=a; j<n-1-b; ++j)
+	{
 		tmp[it++]=mat[m-1-a][j];
 	}
 
-	for(int i=m-1-a; i>a; --i){
+	for(int i=m-1-a; i>a; --i)
+	{
 		tmp[it++]=mat[i][n-1-b];
 	}
 
-	for(int j=n-1-b; j>b; --j){
+	for(int j=n-1-b; j>b; --j)
+	{
 		tmp[it++]=mat[a][j];
 	}
 
 	int itsize = it;
 	it = -r;
 
-	for(int i=a; i<m-1-a; ++i){
+	for(int i=a; i<m-1-a; ++i)
+	{
 		mat[i][b] = tmp[getPos(it++, itsize)];
 	}
 
-	for(int j=a; j<n-1-b; ++j){
+	for(int j=a; j<n-1-b; ++j)
+	{
 		mat[m-1-a][j] = tmp[getPos(it++, itsize)];
 	}
 
-	for(int i=m-1-a; i>a; --i){
+	for(int i=m-1-a; i>a; --i)
+	{
 		mat[i][n-1-b] = tmp[getPos(it++, itsize)];
 	}
 
-	for(int j=n-1-b; j>b; --j){
+	for(int j=n-1-b; j>b; --j)
+	{
 		mat[a][j] = tmp[getPos(it++, itsize)];
 	}
 
