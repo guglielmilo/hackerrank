@@ -1,17 +1,5 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <map>
 #include <iostream>
 #include <fstream>
-#include <algorithm>
-#include <set>
-#include <queue>
-#include <iomanip>
-#include <limits>
-#include <cstring>
-#include <stdlib.h>
-#include <stdio.h>
 using namespace std;
 
 fstream fin("input.txt", ios_base::in);
