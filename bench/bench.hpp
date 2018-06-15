@@ -38,9 +38,6 @@ public:
 
     bool isValid(std::ifstream& expectedFile) const
     {
-        if (!_out.good())
-            return false;
-
         if (!expectedFile.good())
         {
             std::cout << "expected file not found" << std::endl;
