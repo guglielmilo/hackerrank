@@ -4,28 +4,51 @@
 #include <regex>
 #include <fstream>
 #include <ctime>
-#include <limits.h>
 #include <cstring>
+#include <unordered_map>
 
 #include "bench.hpp"
 
-std::ifstream inFile("in.txt");
-std::ofstream outFile("out.txt");
-std::ifstream expectedFile("expected.txt");
-
-Bench bench(inFile, outFile);
+using namespace std;
 
 int main()
-{
-    bench.start();
+{  
+    try
+    {
+        Bench bench("in.txt", "out.txt", "expected.txt");
+        bench.start();        
+        { 
+            //************* CODE HERE *************//
+            vector<string> crossword(10);
 
-    int T;
-    std::cin >> T;
-    std::cout << T;
+            for (int i = 0; i < 10; i++) {
+                string crossword_item;
+                bench >> crossword_item;
+                // getline(inFile, crossword_item); // cin
 
-    // ... code here
-    
-    bench.stop();
-    std::cout << (bench.isValid(expectedFile) ? "ok" : "fail") << " " << bench.getDuration() << "s" << std::endl;      
+                crossword[i] = crossword_item;
+            }
+
+            string words;
+            bench >> words;
+
+            vector<string> result = crosswordPuzzle(crossword, words);
+
+            for (int i = 0; i < result.size(); i++) {
+                bench << result[i];
+
+                if (i != result.size() - 1) {
+                    bench << "\n";
+                }
+            }
+            //************* CODE HERE *************//
+        }
+        bench.stop();
+        bench.compareResults();
+    }
+    catch(const std::exception& e_)
+    {
+        std::cerr << e_.what() << '\n';
+    }
     return 0;
 }
