@@ -66,7 +66,7 @@ public:
         bool result {true};
         const size_t outLinesSize {_outLines.size()};
         const size_t expLinesSize {_expLines.size()};
-        const size_t lineSpace {std::to_string(std::max(outLinesSize, expLinesSize)).size()};
+        const size_t lineSpace {std::to_string(std::max(outLinesSize, expLinesSize)).size() + 2};
         for (auto i=0; i < std::min(outLinesSize, expLinesSize); ++i)
         {
             const auto& outLine{_outLines[i]};
